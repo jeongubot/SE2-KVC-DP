@@ -1,4 +1,3 @@
-"use client";
 
 import { Search, Archive, Eye, Filter } from "lucide-react";
 import { useNavigate } from "react-router-dom";

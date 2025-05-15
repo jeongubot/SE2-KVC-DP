@@ -1,4 +1,3 @@
-"use client";
 
 import { useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom"; // Import useParams

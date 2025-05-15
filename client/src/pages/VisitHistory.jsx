@@ -1,4 +1,3 @@
-"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { Download, Eye, Plus, Filter } from "lucide-react";
