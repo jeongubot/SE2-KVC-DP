@@ -5,12 +5,14 @@ import { Button } from "../components/Button";
 import FormGroup from "../components/FormGroup";
 import "../css/Forms.css";
 
+
 const AccessCode = () => {
   const [formData, setFormData] = useState({
     accessCode: "",
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +31,7 @@ const AccessCode = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/auth/signup/employee-verify",
+        `${baseURL}/auth/signup/employee-verify`,
         {
           method: "POST",
           credentials: "include",

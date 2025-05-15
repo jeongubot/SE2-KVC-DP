@@ -24,6 +24,7 @@ const SignupEmployee = () => {
     const [error, setError] = useState("");
     const [isCaptchaIncorrect, setIsCaptchaIncorrect] = useState(false);
     const { setCurrentRole } = useUserRole();
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
         fetchCaptcha();
@@ -31,7 +32,7 @@ const SignupEmployee = () => {
 
     const fetchCaptcha = async () => {
         try {
-            const response = await fetch("http://localhost:5000/auth/captcha", {
+            const response = await fetch(`${baseURL}/auth/captcha`, {
                 credentials: "include",
             });
             const data = await response.json();
@@ -99,7 +100,7 @@ const SignupEmployee = () => {
     }
 
         try {
-            const response = await fetch("http://localhost:5000/auth/signup/employee", {
+            const response = await fetch(`${baseURL}/auth/signup/employee`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

@@ -28,7 +28,7 @@ const SignupPetOwner = () => {
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const handleChange = (e) => {
     const newFormData = { ...formData, [e.target.name]: e.target.value };
@@ -85,7 +85,7 @@ const SignupPetOwner = () => {
 
 
     try {
-      const response = await fetch("http://localhost:5000/auth/signup/petowner-step1", {
+      const response = await fetch(`${baseURL}/auth/signup/petowner-step1`, {
         method: "POST",
         credentials: "include",
         headers: {

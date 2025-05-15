@@ -32,6 +32,7 @@ const PetInfo = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isCaptchaIncorrect, setIsCaptchaIncorrect] = useState(false);
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const PetInfo = () => {
  
     const fetchCaptcha = async () => {
       try {
-        const response = await fetch("http://localhost:5000/auth/captcha", {
+        const response = await fetch(`${baseURL}/auth/captcha`, {
           credentials: "include", // Ensure session persistence
         });
         const data = await response.json();
@@ -143,7 +144,7 @@ const PetInfo = () => {
 
 
     try {
-        const response = await fetch("http://localhost:5000/auth/signup/petowner-step2", {
+        const response = await fetch(`${baseURL}/auth/signup/petowner-step2`, {
             method: "POST",
             credentials: "include",
             headers: {
