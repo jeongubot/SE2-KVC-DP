@@ -37,7 +37,7 @@ console.log('Session Secret:', process.env.SESSION_SECRET),
 
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:5173" || "http://localhost:5174"], 
+    origin: ["http://localhost:5173" || "http://localhost:5174" || "https://kvc-app-yzujp.ondigitalocean.app"], 
     credentials: true
 }));
 app.use(express.urlencoded({ extended: true })); 
@@ -71,7 +71,7 @@ app.get("/protected-route", authenticate, (req, res) => {
     res.json({ message: "✅ Access granted!", user: req.user });
 });
 
-app.use(session({ secret: "your-secret-key", resave: false, saveUninitialized: true }));
+//app.use(session({ secret: "your-secret-key", resave: false, saveUninitialized: true }));
 
 // route handlers
 app.use("/auth", authRoutes);
