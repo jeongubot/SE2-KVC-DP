@@ -23,7 +23,7 @@ const port = process.env.PORT || 5000;
 // middleware setup
 app.use(cookieParser());
 app.use(session({
-    secret: process.env.SESSION_SECRET, 
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -33,6 +33,7 @@ app.use(session({
         maxAge: 1000 * 60 * 15, 
     }
 }));
+console.log('Session Secret:', process.env.SESSION_SECRET),
 
 app.use(express.json());
 app.use(cors({
