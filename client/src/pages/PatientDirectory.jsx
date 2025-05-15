@@ -16,10 +16,13 @@ export default function PatientDirectory() {
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const recordsPerPage = 9; // Number of records per page
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+
   const logout = useCallback(async () => {
     console.log("Attempting logout due to session issue...");
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -34,7 +37,7 @@ export default function PatientDirectory() {
   useEffect(() => {
     const triggerAutoArchive = async () => {
       try {
-        await fetch("http://localhost:5000/pets/auto-archive", {
+        await fetch(`${baseURL}/pets/auto-archive`, {
           method: "PUT",
           credentials: "include",
           headers: {
@@ -71,7 +74,7 @@ export default function PatientDirectory() {
   useEffect(() => {
     const fetchActivePets = async () => {
       try {
-        const response = await fetch("http://localhost:5000/pets/active", {
+        const response = await fetch(`${baseURL}/pets/active`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -111,7 +114,7 @@ export default function PatientDirectory() {
       async () => {
         try {
           const response = await fetch(
-            `http://localhost:5000/pets/archive/${petId}`,
+            `${baseURL}/pets/archive/${petId}`,
             {
               method: "PUT",
               credentials: "include",
@@ -202,7 +205,7 @@ export default function PatientDirectory() {
       if (filters.max_id) queryParams.append("max_id", filters.max_id);
 
       const response = await fetch(
-        `http://localhost:5000/pets/search-pets?${queryParams.toString()}`,
+        `${baseURL}/pets/search-pets?${queryParams.toString()}`,
         {
           method: "GET",
           credentials: "include",

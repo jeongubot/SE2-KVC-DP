@@ -15,7 +15,7 @@ export default function MyPets() {
     console.log("Attempting logout due to session issue...");
     try {
       // Optional: Inform the backend about the logout attempt
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -31,7 +31,7 @@ export default function MyPets() {
   useEffect(() => {
     const triggerAutoArchive = async () => {
       try {
-        await fetch("http://localhost:5000/pets/auto-archive", {
+        await fetch(`${baseURL}/pets/auto-archive`, {
           method: "PUT",
           credentials: "include",
           headers: {
@@ -68,7 +68,7 @@ export default function MyPets() {
   useEffect(() => {
     const fetchMyPets = async () => {
       try {
-        const response = await fetch("http://localhost:5000/pets/mypets", {
+        const response = await fetch(`${baseURL}/pets/mypets`, {
           method: "GET",
           credentials: "include",
           headers: {
