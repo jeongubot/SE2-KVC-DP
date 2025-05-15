@@ -22,6 +22,7 @@ function LoginForm() {
   const [captcha, setCaptcha] = useState({ image: "", captchaKey: "" });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     fetchCaptcha();
@@ -29,7 +30,7 @@ function LoginForm() {
 
   const fetchCaptcha = async () => {
     try {
-      const response = await fetch("http://localhost:5000/auth/captcha", {
+      const response = await fetch(`${baseURL}/auth/captcha`, {
         credentials: "include",
       });
       const data = await response.json();
@@ -64,7 +65,7 @@ function LoginForm() {
   }
 
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
+      const response = await fetch(`${baseURL}/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -132,8 +133,9 @@ console.error("Error:", error.message);
 
 
     try {
-      const response = await fetch("http://localhost:5000/auth/forgot-password", {
+      const response = await fetch(`${baseURL}/auth/forgot-password`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -170,8 +172,9 @@ console.error("Error:", error.message);
 
 
     try {
-      const response = await fetch("http://localhost:5000/auth/verify-reset-code", {
+      const response = await fetch(`${baseURL}/auth/verify-reset-code`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -227,8 +230,9 @@ console.error("Error:", error.message);
         throw new Error("Passwords do not match");
       }
   
-      const response = await fetch("http://localhost:5000/auth/reset-password", {
+      const response = await fetch(`${baseURL}/auth/reset-password`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -263,8 +267,9 @@ console.error("Error:", error.message);
     console.log("Resending code to:", formData.email);
 
     try {
-        const response = await fetch("http://localhost:5000/auth/resend-reset-code", {
+        const response = await fetch(`${baseURL}/auth/resend-reset-code`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
