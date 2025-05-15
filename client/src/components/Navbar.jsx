@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
-import "../css/NavBar.css";
+import "../css/Navbar.css";
 import { Button } from "./Button";
 
 function NavBar() {
