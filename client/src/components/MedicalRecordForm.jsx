@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect } from "react";
 import "../css/MedicalRecordForm.css";
 import { Eye, Trash2 } from "lucide-react";
