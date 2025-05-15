@@ -57,6 +57,7 @@ export const PERMISSIONS = {
 };
 
 const UserRoleContext = createContext(null);
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const getInitialRole = () => {
   const storedRole = localStorage.getItem("userRole");
@@ -75,7 +76,7 @@ const getInitialRole = () => {
 
 const verifyAuthStatus = async () => {
   try {
-    const response = await fetch("http://localhost:5000/auth/verify-token", {
+    const response = await fetch(`${baseURL}/auth/verify-token`, {
       method: "GET",
       credentials: "include",
     });
@@ -146,7 +147,7 @@ export function UserRoleProvider({ children }) {
     setCurrentRole(ROLES.UNKNOWN);
 
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
