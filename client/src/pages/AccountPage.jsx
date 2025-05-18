@@ -34,10 +34,11 @@ const AccountPage = ({
   });
   const { showConfirmDialog } = useConfirmDialog();
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const logout = useCallback(async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -165,7 +166,7 @@ const AccountPage = ({
   const savePasswordChanges = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/user/change-password",
+        `${baseURL}/user/change-password`,
         {
           method: "POST",
           credentials: "include",

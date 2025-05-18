@@ -13,12 +13,13 @@ const OwnerMyAccount = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const logout = useCallback(async () => {
     console.log("Attempting logout due to session issue...");
     try {
       // Optional: Inform the backend about the logout attempt
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -77,7 +78,7 @@ const OwnerMyAccount = () => {
     const fetchOwnerData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/user/owner/myAccount",
+          `${baseURL}/user/owner/myAccount`,
           {
             method: "GET",
             credentials: "include", // Include cookies for authentication
@@ -297,7 +298,7 @@ const OwnerMyAccount = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/user/update-petowner-profile",
+        `${baseURL}/user/update-petowner-profile`,
         {
           method: "PUT",
           headers: {

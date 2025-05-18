@@ -8,6 +8,7 @@ import { useConfirmDialog } from "../contexts/ConfirmDialogContext";
 import MedicalRecordForm from "../components/MedicalRecordForm";
 import { useUserRole } from "../contexts/UserRoleContext";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 const formatDateForDisplay = (dateString) => {
   if (!dateString) return "";
 
@@ -80,7 +81,7 @@ const AddRecord = ({ onClose, onSubmit }) => {
     console.log("Attempting logout due to session issue...");
     try {
       // Optional: Inform the backend about the logout attempt
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -179,7 +180,7 @@ const AddRecord = ({ onClose, onSubmit }) => {
         console.log("File Details:", formDataPayload.get("record_lab_file"));
 
         const response = await fetch(
-          `http://localhost:5000/recs/records/${pet_id}`,
+          `${baseURL}/recs/records/${pet_id}`,
           {
             method: "POST",
             credentials: "include",

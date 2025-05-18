@@ -22,10 +22,11 @@ export default function AddNewPet() {
 
   const navigate = useNavigate();
   const { showConfirmDialog } = useConfirmDialog();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const logout = useCallback(async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -124,7 +125,7 @@ export default function AddNewPet() {
   };
   const submitPet = async () => {
     try {
-      const response = await fetch("http://localhost:5000/pets/add", {
+      const response = await fetch(`${baseURL}/pets/add`, {
         method: "POST",
         credentials: "include",
         headers: {

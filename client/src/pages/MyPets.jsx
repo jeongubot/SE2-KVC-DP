@@ -10,6 +10,7 @@ export default function MyPets() {
   const [pets, setPets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const recordsPerPage = 9; // Number of records per page
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const logout = useCallback(async () => {
     console.log("Attempting logout due to session issue...");

@@ -15,11 +15,12 @@ const VisitHistory = () => {
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [visitRecords, setVisitRecords] = useState([]);
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const navigate = useNavigate();
   const logout = useCallback(async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -33,7 +34,7 @@ const VisitHistory = () => {
   const fetchVisitRecords = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/recs/visit-records?pet_id=${pet_id}`,
+        `${baseURL}/recs/visit-records?pet_id=${pet_id}`,
         {
           method: "GET",
           credentials: "include",
@@ -106,7 +107,7 @@ const VisitHistory = () => {
       queryParams.append("pet_id", pet_id);
 
       const response = await fetch(
-        `http://localhost:5000/recs/search-records?${queryParams.toString()}`,
+        `${baseURL}/recs/search-records?${queryParams.toString()}`,
         {
           method: "GET",
           credentials: "include",
@@ -138,7 +139,7 @@ const VisitHistory = () => {
   const resetFilters = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/recs/visit-records?pet_id=${pet_id}`,
+        `${baseURL}/recs/visit-records?pet_id=${pet_id}`,
         {
           method: "GET",
           credentials: "include",
@@ -170,7 +171,7 @@ const VisitHistory = () => {
   const updateRecord = async (recordId, updatedData) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/recs/records/${recordId}`,
+        `${baseURL}/recs/records/${recordId}`,
         {
           method: "PUT",
           credentials: "include",
@@ -296,7 +297,7 @@ const VisitHistory = () => {
                       onClick={async () => {
                         try {
                           const response = await fetch(
-                            `http://localhost:5000/recs/generate-pdf/${pet_id}/${record.id}`,
+                            `${baseURL}/recs/generate-pdf/${pet_id}/${record.id}`,
                             {
                               method: "GET",
                               credentials: "include",

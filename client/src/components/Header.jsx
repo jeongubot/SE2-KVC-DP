@@ -6,9 +6,10 @@ import React from "react";
 
 const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:5000/auth/logout", {
+      const response = await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
         headers: {

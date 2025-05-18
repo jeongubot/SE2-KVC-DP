@@ -23,10 +23,11 @@ const ViewRecord = ({ record, onBack, onUpdate }) => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [petName, setPetName] = useState("");
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const logout = useCallback(async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -137,7 +138,7 @@ const ViewRecord = ({ record, onBack, onUpdate }) => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:5000/recs/records/${pet_id}`,
+          `${baseURL}/recs/records/${pet_id}`,
           {
             method: "GET",
             credentials: include,
@@ -187,7 +188,7 @@ const ViewRecord = ({ record, onBack, onUpdate }) => {
   useEffect(() => {
     const fetchPetName = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/pets/${pet_id}`, {
+        const response = await fetch(`${baseURL}/pets/${pet_id}`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -327,7 +328,7 @@ const ViewRecord = ({ record, onBack, onUpdate }) => {
   const handleRequestAccessCode = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/recs/records/request-access-code",
+        `${baseURL}/recs/records/request-access-code`,
         {
           method: "GET",
           credentials: "include",
@@ -470,7 +471,7 @@ const ViewRecord = ({ record, onBack, onUpdate }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/recs/records/${record.id}`,
+        `${baseURL}/recs/records/${record.id}`,
         {
           method: "PUT",
           credentials: "include",
@@ -519,7 +520,7 @@ const ViewRecord = ({ record, onBack, onUpdate }) => {
 
       const fetchUpdatedRecord = async () => {
         const updatedResponse = await fetch(
-          `http://localhost:5000/recs/records/${record.id}`
+          `${baseURL}/recs/records/${record.id}`
         );
         if (updatedResponse.status === 401) {
           console.warn(

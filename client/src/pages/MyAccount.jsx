@@ -19,12 +19,13 @@ const MyAccount = () => {
     email: "",
     contact: "",
   });
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const logout = useCallback(async () => {
     console.log("Attempting logout due to session issue...");
     try {
       // Optional: Inform the backend about the logout attempt
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -40,7 +41,7 @@ const MyAccount = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/user/myAccount", {
+        const response = await fetch(`${baseURL}/user/myAccount`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -132,7 +133,7 @@ const MyAccount = () => {
         };
 
         const response = await fetch(
-          "http://localhost:5000/user/update-employee-profile",
+          `${baseURL}/user/update-employee-profile`,
           {
             method: "PUT",
             credentials: "include",

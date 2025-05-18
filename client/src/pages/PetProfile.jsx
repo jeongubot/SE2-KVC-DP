@@ -20,13 +20,13 @@ export default function PetProfile() {
   const [petData, setPetData] = useState(null);
   const [nameError, setNameError] = useState("");
   const [birthdayError, setBirthdayError] = useState("");
-
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const logout = useCallback(async () => {
     console.log("Attempting logout due to session issue...");
     try {
       // Optional: Inform the backend about the logout attempt
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -52,7 +52,7 @@ export default function PetProfile() {
     async (petId) => {
       try {
         const response = await fetch(
-          `http://localhost:5000/vax/pets/${petId}/viewVaccines`,
+          `${baseURL}/vax/pets/${petId}/viewVaccines`,
           {
             method: "GET",
             credentials: "include",
@@ -88,7 +88,7 @@ export default function PetProfile() {
     const fetchPetData = async () => {
       try {
         console.log("Fetching pet data for pet_id:", pet_id);
-        const response = await fetch(`http://localhost:5000/pets/${pet_id}`, {
+        const response = await fetch(`${baseURL}/pets/${pet_id}`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -165,7 +165,7 @@ export default function PetProfile() {
   const fetchUpdatedPetData = async () => {
     try {
       console.log("Fetching updated pet data after save...");
-      const response = await fetch(`http://localhost:5000/pets/${pet_id}`, {
+      const response = await fetch(`${baseURL}/pets/${pet_id}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -268,7 +268,7 @@ export default function PetProfile() {
         console.log("Sending request body:", requestBody);
 
         const response = await fetch(
-          `http://localhost:5000/pets/edit/${pet_id}`,
+          `${baseURL}/pets/edit/${pet_id}`,
           {
             method: "PUT",
             credentials: "include",

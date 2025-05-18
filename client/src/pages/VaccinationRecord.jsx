@@ -21,7 +21,7 @@ export default function VaccinationRecord({
     doses: "",
     date: "",
   });
-
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const { showConfirmDialog } = useConfirmDialog();
 
   const getVaccineTypesBySpecies = (species) => {
@@ -49,7 +49,7 @@ export default function VaccinationRecord({
   const logout = useCallback(async () => {
     console.log("Attempting logout due to session issue...");
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`${baseURL}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -69,7 +69,7 @@ export default function VaccinationRecord({
       try {
         // Fetch vaccination records
         const vaccineResponse = await fetch(
-          `http://localhost:5000/pets/${pet_id}/vaccines`,
+          `${baseURL}/pets/${pet_id}/vaccines`,
           {
             credentials: "include",
           }
@@ -176,7 +176,7 @@ export default function VaccinationRecord({
 
           // Send the update to the server
           const response = await fetch(
-            `http://localhost:5000/pets/${pet_id}/vaccines/${vaccination.vax_id}`,
+            `${baseURL}/pets/${pet_id}/vaccines/${vaccination.vax_id}`,
             {
               method: "PUT",
               credentials: "include",
@@ -317,7 +317,7 @@ export default function VaccinationRecord({
           });
 
           const response = await fetch(
-            `http://localhost:5000/pets/${pet_id}/vaccines`,
+            `${baseURL}/pets/${pet_id}/vaccines`,
             {
               method: "POST",
               credentials: "include",
