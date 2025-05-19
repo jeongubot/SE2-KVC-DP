@@ -37,7 +37,7 @@ console.log('Session Secret:', process.env.SESSION_SECRET),
 
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:5173" || "http://localhost:5174" || "https://kvc-app-yzujp.ondigitalocean.app"], 
+    origin: ["https://kvc-app-yzujp.ondigitalocean.app"], 
     credentials: true
 }));
 app.use(express.urlencoded({ extended: true })); 
