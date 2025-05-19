@@ -267,7 +267,7 @@ exports.signupEmployeeRequest = async (req, res) => {
     const { fname, lname, contact, email, role, password, confirmPassword, captchaInput } = req.body;
     
     // validate CAPTCHA first
-     if (!req.session.captcha || captchaInput !== req.session.captcha) {
+    if (!req.session.captcha || captchaInput !== req.session.captcha) {
         const newCaptcha = getNewCaptchaData(req);
         return res.status(400).json({
             error: "❌ Incorrect CAPTCHA!",
@@ -309,10 +309,10 @@ exports.signupEmployeeRequest = async (req, res) => {
         if (existingUser) {
             const newCaptcha = getNewCaptchaData(req);
             console.log("New CAPTCHA generated (Email Taken):", newCaptcha.captchaKey);
-           return res.status(400).json({
-               error: "❌ Email already in use.",
-               newCaptcha: newCaptcha,
-           });
+        return res.status(400).json({
+            error: "❌ Email already in use.",
+            newCaptcha: newCaptcha,
+        });
         }
 
         req.session.captcha = null;
