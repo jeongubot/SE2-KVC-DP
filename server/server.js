@@ -71,6 +71,7 @@ app.get("/protected-route", authenticate, (req, res) => {
     res.json({ message: "✅ Access granted!", user: req.user });
 });
 
+app.set("trust proxy", 1);
 //app.use(session({ secret: "your-secret-key", resave: false, saveUninitialized: true }));
 
 // route handlers
