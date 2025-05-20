@@ -26,7 +26,7 @@ function Landing() {
         <section className="hero" id="home">
           <div className="hero-content">
             <h1>
-              KHO <br /> VETERINARY hi
+              KHO <br /> VETERINARY 
               <br /> CLINIC
             </h1>
             <p>Four Paws, Two Feet, One Heart</p>
